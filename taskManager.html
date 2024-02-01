@@ -1,0 +1,75 @@
+<!-- taskManager.html -->
+<template>
+    <lightning-card title="Task Manager">
+        <div slot="actions">
+            <!-- Button to create a new task -->
+            <lightning-button variant="brand" label="Create New Task" onclick={createNewTask}></lightning-button>
+        </div>
+        
+        <!-- Display tasks assigned to the current user -->
+        <template if:true={tasks}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="slds-cell-wrap" scope="col">
+                            <div class="slds-truncate" title="Subject">Subject</div>
+                        </th>
+                        <th class="slds-cell-wrap" scope="col">
+                            <div class="slds-truncate" title="Due Date">Due Date</div>
+                        </th>
+                        <th class="slds-cell-wrap" scope="col">
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                        <th class="slds-cell-wrap" scope="col">
+                            <div class="slds-truncate" title="Action">Action</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={tasks} for:item="task">
+                        <tr key={task.Id} class="slds-hint-parent">
+                            <td data-label="Subject" class="slds-cell-wrap">{task.Subject}</td>
+                            <td data-label="Due Date" class="slds-cell-wrap">{task.ActivityDate}</td>
+                            <td data-label="Status" class="slds-cell-wrap">{task.Status}</td>
+                            <td data-label="Action" class="slds-cell-wrap">
+                                <lightning-button variant="success" label="Complete" onclick={markAsComplete} data-task-id={task.Id}></lightning-button>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </template>
+    </lightning-card>
+
+    <!-- Modal for creating a new task -->
+    <template if:true={showModal}>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+                    <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create New Task</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <!-- Implement your form for creating a new task here -->
+                <div class="slds-form slds-form_stacked">
+                    <div class="slds-form-element">
+                        <lightning-input type="text" name="subject" label="Subject" onchange={handleInputChange} value={subject}></lightning-input>
+                    </div>
+                    <div class="slds-form-element">
+                        <lightning-input type="date" name="dueDate" label="Due Date" onchange={handleInputChange} value={dueDate}></lightning-input>
+                    </div>
+                    
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <lightning-button label="Cancel" onclick={handleCloseModal}></lightning-button>
+                <lightning-button label="Save" onclick={handleSaveTask}></lightning-button>
+            </footer>
+        </div>
+    </section>
+    </template>
+</template>

@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Weather Information" class="weather-card">
+        <template if:true={weatherData}>
+            <div class="weather-info">
+                <p class="temperature">Temperature: {weatherData.main.temp}°C</p>
+                <p class="description">Description: {description}</p>
+            </div>
+        </template>
+        <template if:false={weatherData}>
+            <div class="no-info">
+                <p>No weather information available</p>
+            </div>
+        </template>
+    </lightning-card>
+</template>
