@@ -10,6 +10,7 @@
 
 .temperature, .description {
     font-size: 18px;
+    padding-left: 1rem;
 }
 
 .no-info {
