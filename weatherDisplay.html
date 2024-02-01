@@ -3,7 +3,7 @@
         <template if:true={weatherData}>
             <div class="weather-info">
                 <p class="temperature">Temperature: {weatherData.main.temp}°C</p>
-                <p class="description">Description: {description}</p>
+                <p class="description">Description:<img src={iconurl} ></img>{description}</p>
             </div>
         </template>
         <template if:false={weatherData}>
