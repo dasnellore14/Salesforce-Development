@@ -11,6 +11,7 @@ export default class WeatherDisplay extends LightningElement {
     longitude;
     weatherData;
     description;
+    iconurl;
 
     connectedCallback() {
         this.loadCoordinates();
@@ -36,6 +37,7 @@ export default class WeatherDisplay extends LightningElement {
                 this.weatherData = result;
                 if (this.weatherData && this.weatherData.weather && this.weatherData.weather.length > 0) {
                     this.description = this.weatherData.weather[0].description;
+                    this.iconurl =  "http://openweathermap.org/img/w/" + this.weatherData.weather[0].icon + ".png";
                 } 
                 this.storeWeatherData();
             })
