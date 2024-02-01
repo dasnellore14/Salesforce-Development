@@ -14,8 +14,8 @@ In order to test the task manager solution
 login to the salesforce org.
 Navigate to the sales app from app launcher and click on the home tab
 find the task manager component on the right-hand side
-Click on Create New Task to create a new task
-Tasks assigned to the current logged-in user can be found in the table along with the fields shown
+Click on Create New Task button to create a new task
+Tasks assigned to the current logged-in user can be found in the table along with the required fields
 There is a complete button at the end of each record to mark the task as completed.
 
 ====================================================
